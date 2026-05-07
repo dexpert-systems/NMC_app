@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────── Tokens ───────────── */
+
+:root {
+  /* Surfaces */
+  --bg: #F6F3EC;          /* warm cream, like premium book paper */
+  --bg-2: #EFEAE0;        /* slightly deeper cream for ambient layers */
+  --surface: #FFFFFF;
+  --surface-2: #FBF9F3;
+
+  /* Ink scale */
+  --ink: #0B0C0E;
+  --ink-2: #2A2E33;
+  --ink-3: #5C636C;
+  --ink-4: #8A929B;
+
+  /* Lines */
+  --line: rgba(11, 12, 14, 0.08);
+  --line-soft: rgba(11, 12, 14, 0.04);
+
+  /* Brand */
+  --accent: #E25822;          /* warmer marigold than pure orange */
+  --accent-2: #F38B5C;
+  --accent-soft: rgba(226, 88, 34, 0.10);
+  --heritage: #1A3A5C;        /* deep heritage blue */
+  --sage: #4F8B5C;            /* calm success */
+  --amber: #C97A0E;           /* warn */
+
+  /* Glass */
+  --glass-stroke: rgba(11, 12, 14, 0.07);
+  --glass-stroke-2: rgba(255, 255, 255, 0.65);
+  --glass-blur: 22px;
+
+  /* Radii */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-pill: 999px;
+
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0A0B0D;
+  --bg-2: #0F1115;
+  --surface: #15171C;
+  --surface-2: #1B1E24;
+
+  --ink: #F4F5F7;
+  --ink-2: #C7CCD3;
+  --ink-3: #8A929B;
+  --ink-4: #5C636C;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-soft: rgba(255, 255, 255, 0.04);
+
+  --glass-stroke: rgba(255, 255, 255, 0.08);
+  --glass-stroke-2: rgba(255, 255, 255, 0.12);
+
+  color-scheme: dark;
+}
+
+* { border-color: var(--line); }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-feature-settings: "ss01", "ss02", "cv11";
+}
+
+/* ───────────── Type ───────────── */
+
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-feature-settings: "ss01", "ss02";
+  font-optical-sizing: auto;
+  letter-spacing: -0.025em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ───────────── Surfaces ───────────── */
+
+/* Layered, slightly warm glass */
+.glass {
+  background: color-mix(in oklab, var(--surface) 78%, transparent);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-stroke);
+  box-shadow:
+    inset 0 1px 0 var(--glass-stroke-2),
+    0 1px 0 rgba(11, 12, 14, 0.02),
+    0 12px 32px -16px rgba(11, 12, 14, 0.18),
+    0 2px 8px -3px rgba(11, 12, 14, 0.08);
+}
+
+.dark .glass {
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  box-shadow:
+    inset 0 1px 0 var(--glass-stroke-2),
+    0 12px 32px -16px rgba(0, 0, 0, 0.6),
+    0 2px 8px -3px rgba(0, 0, 0, 0.3);
+}
+
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow:
+    0 1px 0 rgba(11, 12, 14, 0.02),
+    0 24px 48px -24px rgba(11, 12, 14, 0.12),
+    0 2px 6px -2px rgba(11, 12, 14, 0.06);
+}
+
+.dark .surface-card {
+  box-shadow:
+    0 24px 48px -24px rgba(0, 0, 0, 0.5),
+    0 2px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Hairline gradient border */
+.hairline {
+  position: relative;
+}
+.hairline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(11, 12, 14, 0.03) 50%,
+    rgba(11, 12, 14, 0.08) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ───────────── Backdrop layers ───────────── */
+
+/* Subtle paper grain — adds tactile warmth */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0   0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>");
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.dark .grain::after {
+  mix-blend-mode: screen;
+  opacity: 0.06;
+}
+
+/* Aurora — slow ambient gradient */
+.aurora {
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.55;
+}
+.dark .aurora { opacity: 0.40; }
+
+.aurora-blob {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+}
+
+@keyframes drift-1 {
+  0%, 100% { transform: translate3d(-15%, -10%, 0) scale(1); }
+  50%      { transform: translate3d(5%, 5%, 0) scale(1.1); }
+}
+@keyframes drift-2 {
+  0%, 100% { transform: translate3d(20%, 30%, 0) scale(1.05); }
+  50%      { transform: translate3d(-10%, 10%, 0) scale(0.95); }
+}
+@keyframes drift-3 {
+  0%, 100% { transform: translate3d(30%, -20%, 0) scale(0.9); }
+  50%      { transform: translate3d(10%, 0, 0) scale(1.05); }
+}
+
+/* ───────────── Inputs ───────────── */
+
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--bg),
+    0 0 0 3px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+input::placeholder {
+  color: var(--ink-4);
+}
+
+/* ───────────── Misc ───────────── */
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 30%, transparent);
+  color: var(--ink);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Live dot pulse */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.92); }
+}
+.live-dot {
+  animation: live-pulse 2.4s ease-in-out infinite;
+}
+
+/* Slow shimmer for hero accents */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
