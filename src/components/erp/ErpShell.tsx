@@ -7,7 +7,8 @@ import { ErpTopbar } from "./ErpTopbar";
 import { InsightsPanel } from "./InsightsPanel";
 import { CommandConsole } from "./CommandConsole";
 import { LiveOpsTicker } from "./LiveOpsTicker";
-import { getCurrentRole, ROLES, type Role } from "@/lib/erp";
+import { ErpAurora } from "./ErpAurora";
+import { getCurrentRole, type Role } from "@/lib/erp";
 
 type Props = {
   children: React.ReactNode;
@@ -44,8 +45,9 @@ export function ErpShell({ children, expectedRole }: Props) {
 
   if (!role) {
     return (
-      <div className="dark min-h-svh bg-bg flex items-center justify-center text-ink-3">
-        <div className="flex flex-col items-center gap-3">
+      <div className="dark erp-canvas min-h-svh flex items-center justify-center text-ink-3">
+        <ErpAurora />
+        <div className="relative flex flex-col items-center gap-3 z-10">
           <span className="h-8 w-8 rounded-full border-2 border-accent/20 border-t-accent animate-spin" />
           <span className="text-[11px] uppercase tracking-[0.2em]">
             Loading workspace…
@@ -55,28 +57,13 @@ export function ErpShell({ children, expectedRole }: Props) {
     );
   }
 
-  const profile = ROLES[role];
-
   return (
-    <div className="dark min-h-svh bg-bg text-ink overflow-x-hidden">
-      {/* Ambient grid background */}
-      <div
-        aria-hidden
-        className="fixed inset-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      <div
-        aria-hidden
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(80% 60% at 50% 0%, rgba(226,88,34,0.06), transparent 70%)",
-        }}
-      />
+    <div className="dark erp-canvas erp-noise min-h-svh text-ink overflow-x-hidden relative">
+      {/* Ambient layers */}
+      <ErpAurora />
+      <div aria-hidden className="erp-grid" />
+      <div aria-hidden className="erp-vignette" />
+      <div aria-hidden className="scan-line" />
 
       <div className="relative flex">
         <AdaptiveSidebar role={role} />

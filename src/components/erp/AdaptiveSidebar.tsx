@@ -200,16 +200,16 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
         </div>
         <div className="space-y-1.5 text-[10px] text-ink-3">
           {[
-            ["GIS sync", "OK · 12s ago", "sage"],
-            ["UPI gateway", "Live", "sage"],
-            ["AI agents", "9 active", "sage"],
-            ["Aadhaar API", "Throttled", "amber"],
-          ].map(([k, v, tone]) => (
+            ["GIS sync", "OK · 12s ago", "sage", false],
+            ["UPI gateway", "Live", "sage", true],
+            ["AI agents", "9 active", "sage", true],
+            ["Aadhaar API", "Throttled", "amber", false],
+          ].map(([k, v, tone, pulse]) => (
             <div key={k as string} className="flex items-center justify-between">
-              <span>{k}</span>
+              <span>{k as string}</span>
               <span
                 className={
-                  "tabular " +
+                  "tabular inline-flex items-center gap-1.5 " +
                   (tone === "amber"
                     ? "text-amber"
                     : tone === "danger"
@@ -217,7 +217,15 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
                     : "text-sage")
                 }
               >
-                {v}
+                {pulse && (
+                  <span
+                    className={
+                      "h-1.5 w-1.5 rounded-full live-dot " +
+                      (tone === "amber" ? "bg-amber" : "bg-sage")
+                    }
+                  />
+                )}
+                {v as string}
               </span>
             </div>
           ))}

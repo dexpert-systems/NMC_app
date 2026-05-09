@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ErpShell } from "@/components/erp/ErpShell";
 import { Icon } from "@/components/Icon";
+import { LiveCounter } from "@/components/erp/LiveCounter";
 
 const HEAT = [
   { ward: "Sitabuldi", garbage: 44, drainage: 28, water: 9, light: 6, total: 87 },
@@ -109,12 +110,12 @@ function Hero() {
 
       <div className="relative mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          { k: "Active", v: "204", tone: "amber" },
-          { k: "Escalated", v: "9", tone: "danger" },
-          { k: "Auto-resolved today", v: "138", tone: "sage" },
-          { k: "Sentiment", v: "+2.4", tone: "sage" },
-        ].map((s) => (
-          <div key={s.k} className="rounded-md border border-line bg-bg/40 px-4 py-3">
+          { k: "Active", v: <span>204</span>, tone: "amber" },
+          { k: "Escalated", v: <span>9</span>, tone: "danger" },
+          { k: "Auto-resolved today", v: <LiveCounter base={138} maxStep={2} intervalMs={3500} />, tone: "sage" },
+          { k: "Sentiment", v: <span>+2.4</span>, tone: "sage" },
+        ].map((s, idx) => (
+          <div key={idx} className="rounded-md border border-line bg-bg/40 px-4 py-3">
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">{s.k}</div>
             <div className={"mt-1.5 font-display tabular text-2xl leading-none " + (s.tone === "danger" ? "text-danger" : s.tone === "amber" ? "text-amber" : "text-sage")}>
               {s.v}
@@ -273,7 +274,12 @@ function EscalationList() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
-            className="rounded-[14px] border border-line bg-surface/30 hover:bg-surface/50 transition-colors p-5"
+            className={
+              "rounded-[14px] border bg-surface/30 hover:bg-surface/50 transition-colors p-5 " +
+              (e.severity === "critical"
+                ? "border-danger/40 risk-pulse"
+                : "border-line")
+            }
           >
             <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_220px] gap-5 items-start">
               <div>

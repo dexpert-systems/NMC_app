@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ROLES, type Role, clearCurrentRole } from "@/lib/erp";
 import { Icon } from "@/components/Icon";
+import { LiveCounter } from "./LiveCounter";
 
 type Props = {
   role: Role;
@@ -50,7 +51,9 @@ export function ErpTopbar({ role, onCommandOpen, insightsOpen, onInsightsToggle 
           <span className="text-ink-4">·</span>
           <span className="tabular">{time} IST</span>
           <span className="text-ink-4">·</span>
-          <span>Nagpur · all wards</span>
+          <span className="inline-flex items-center gap-1.5">
+            <LiveCounter base={4218} maxStep={5} intervalMs={5000} suffix=" txns" />
+          </span>
         </div>
 
         {/* Command bar — center */}

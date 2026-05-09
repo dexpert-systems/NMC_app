@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ErpShell } from "@/components/erp/ErpShell";
 import { Icon } from "@/components/Icon";
+import { LiveCounter } from "@/components/erp/LiveCounter";
 import { getCurrentRole, ROLES } from "@/lib/erp";
 
 export default function CommissionerCockpit() {
@@ -92,39 +93,54 @@ function CockpitHero() {
       </div>
 
       <div className="relative mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {[
-          { k: "Wards on track", v: "31", total: "/ 38", tone: "sage" },
-          { k: "Open escalations", v: "9", total: "of 12 today", tone: "amber" },
-          { k: "AI agents active", v: "9", total: "across depts", tone: "accent" },
-          { k: "SLA compliance", v: "94", total: "% MTD", tone: "sage" },
-        ].map((s) => (
-          <div
-            key={s.k}
-            className="rounded-md border border-line bg-bg/40 px-4 py-3"
-          >
-            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">
-              {s.k}
-            </div>
-            <div className="mt-1.5 flex items-baseline gap-1.5">
-              <span className="font-display tabular text-3xl text-ink leading-none">
-                {s.v}
-              </span>
-              <span className="text-[11px] text-ink-3">{s.total}</span>
-            </div>
-            <div
-              className={
-                "mt-2 h-0.5 w-full rounded-full " +
-                (s.tone === "sage"
-                  ? "bg-sage/40"
-                  : s.tone === "amber"
-                  ? "bg-amber/40"
-                  : "bg-accent/40")
-              }
-            />
-          </div>
-        ))}
+        <SubKPI k="Wards on track" v="31" total="/ 38" tone="sage" />
+        <SubKPI k="Open escalations" v="9" total="of 12 today" tone="amber" />
+        <SubKPI k="AI agents active" v="9" total="across depts" tone="accent" pulse />
+        <SubKPI k="SLA compliance" v="94" total="% MTD" tone="sage" />
       </div>
     </motion.div>
+  );
+}
+
+function SubKPI({
+  k,
+  v,
+  total,
+  tone,
+  pulse,
+}: {
+  k: string;
+  v: string;
+  total: string;
+  tone: "sage" | "amber" | "accent";
+  pulse?: boolean;
+}) {
+  return (
+    <div className="rounded-md border border-line bg-bg/40 px-4 py-3 relative overflow-hidden">
+      {pulse && (
+        <span
+          aria-hidden
+          className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full bg-sage live-dot"
+        />
+      )}
+      <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">{k}</div>
+      <div className="mt-1.5 flex items-baseline gap-1.5">
+        <span className="font-display tabular text-3xl text-ink leading-none">
+          {v}
+        </span>
+        <span className="text-[11px] text-ink-3">{total}</span>
+      </div>
+      <div
+        className={
+          "mt-2 h-0.5 w-full rounded-full " +
+          (tone === "sage"
+            ? "bg-sage/40"
+            : tone === "amber"
+            ? "bg-amber/40"
+            : "bg-accent/40")
+        }
+      />
+    </div>
   );
 }
 
@@ -233,91 +249,119 @@ function ActionStack() {
 /* ────────────── KPI GRID ────────────── */
 
 function KPIGrid() {
-  const KPIS = [
-    {
-      label: "Q3 collection",
-      value: "₹113 Cr",
-      sub: "of ₹130 Cr target",
-      progress: 87,
-      trend: "+₹4.2 Cr today",
-      tone: "accent",
-    },
-    {
-      label: "Active grievances",
-      value: "1,284",
-      sub: "of 1,612 total",
-      progress: 79,
-      trend: "-9 min median",
-      tone: "sage",
-    },
-    {
-      label: "Pending approvals",
-      value: "47",
-      sub: "across 4 depts",
-      progress: 32,
-      trend: "5 flagged",
-      tone: "amber",
-    },
-    {
-      label: "Citizen sentiment",
-      value: "+2.4",
-      sub: "out of ±5",
-      progress: 73,
-      trend: "+11 pp WoW",
-      tone: "sage",
-    },
-  ];
-
   return (
     <div className="mt-8">
       <div className="flex items-center gap-2.5 text-[10px] uppercase tracking-[0.22em] text-ink-3 mb-4">
         <span className="h-px w-6 bg-line" />
         <span>City KPIs · last 24h</span>
+        <span className="text-ink-4">·</span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-sage live-dot" />
+          live stream
+        </span>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        {KPIS.map((k, i) => (
-          <motion.div
-            key={k.label}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: i * 0.05 }}
-            className="rounded-[14px] border border-line bg-surface/30 p-5"
-          >
-            <div className="text-[10px] uppercase tracking-[0.16em] text-ink-3">
-              {k.label}
-            </div>
-            <div className="mt-3 font-display tabular text-[clamp(28px,3.5vw,36px)] font-medium leading-none text-ink">
-              {k.value}
-            </div>
-            <div className="text-[11px] text-ink-3 tabular mt-1">{k.sub}</div>
-            <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-bg/60">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${k.progress}%` }}
-                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-                className={
-                  "h-full rounded-full " +
-                  (k.tone === "sage"
-                    ? "bg-sage"
-                    : k.tone === "amber"
-                    ? "bg-amber"
-                    : "bg-accent")
-                }
-              />
-            </div>
-            <div
-              className={
-                "mt-2 text-[11px] tabular " +
-                (k.tone === "amber" ? "text-amber" : "text-sage")
-              }
-            >
-              {k.trend}
-            </div>
-          </motion.div>
-        ))}
+        <KPI label="Q3 collection · live" tone="accent" progress={87}>
+          <span className="font-display tabular text-[clamp(28px,3.5vw,36px)] font-medium leading-none text-ink">
+            ₹113.<LiveCounter
+              base={42}
+              maxStep={1}
+              intervalMs={9000}
+              format={(n) => String(n).padStart(2, "0")}
+            />
+            <span className="text-[18px]"> Cr</span>
+          </span>
+          <KPISub sub="of ₹130 Cr target" trend="+₹4.2 Cr today" tone="accent" />
+        </KPI>
+
+        <KPI label="Citizens served · live" tone="sage" progress={79}>
+          <span className="font-display tabular text-[clamp(28px,3.5vw,36px)] font-medium leading-none text-ink">
+            <LiveCounter base={73294} maxStep={4} intervalMs={3500} />
+          </span>
+          <KPISub sub="this week" trend="+8.1% WoW" tone="sage" />
+        </KPI>
+
+        <KPI label="Pending approvals" tone="amber" progress={32}>
+          <span className="font-display tabular text-[clamp(28px,3.5vw,36px)] font-medium leading-none text-ink">
+            47
+          </span>
+          <KPISub sub="across 4 depts" trend="5 flagged" tone="amber" />
+        </KPI>
+
+        <KPI label="Citizen sentiment" tone="sage" progress={73}>
+          <span className="font-display tabular text-[clamp(28px,3.5vw,36px)] font-medium leading-none text-ink">
+            +2.4
+          </span>
+          <KPISub sub="out of ±5" trend="+11 pp WoW" tone="sage" />
+        </KPI>
       </div>
     </div>
+  );
+}
+
+function KPI({
+  label,
+  tone,
+  progress,
+  children,
+}: {
+  label: string;
+  tone: "sage" | "amber" | "accent";
+  progress: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45 }}
+      className="rounded-[14px] border border-line bg-surface/30 p-5"
+    >
+      <div className="text-[10px] uppercase tracking-[0.16em] text-ink-3">
+        {label}
+      </div>
+      <div className="mt-3">{children}</div>
+      <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-bg/60">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className={
+            "h-full rounded-full " +
+            (tone === "sage"
+              ? "bg-sage"
+              : tone === "amber"
+              ? "bg-amber"
+              : "bg-accent")
+          }
+        />
+      </div>
+    </motion.div>
+  );
+}
+
+function KPISub({
+  sub,
+  trend,
+  tone,
+}: {
+  sub: string;
+  trend: string;
+  tone: "sage" | "amber" | "accent";
+}) {
+  return (
+    <>
+      <div className="text-[11px] text-ink-3 tabular mt-1">{sub}</div>
+      <div
+        className={
+          "mt-3 text-[11px] tabular " +
+          (tone === "amber" ? "text-amber" : tone === "accent" ? "text-accent" : "text-sage")
+        }
+      >
+        {trend}
+      </div>
+    </>
   );
 }
 
@@ -375,7 +419,7 @@ function RiskHeatmap() {
             className={
               "relative rounded-md border text-left p-3 transition-all hover:scale-[1.02] focus-ring " +
               (w.risk === "high"
-                ? "border-danger/40 bg-danger/10"
+                ? "border-danger/40 bg-danger/10 risk-pulse"
                 : w.risk === "med"
                 ? "border-amber/30 bg-amber/8"
                 : "border-line bg-bg/40 hover:bg-bg/60")

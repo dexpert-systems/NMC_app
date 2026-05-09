@@ -233,8 +233,25 @@ function CollectionForecast() {
             </linearGradient>
           </defs>
         </svg>
+        {/* Glowing "now" point at the last actual data — meaningful, marks live position */}
+        {(() => {
+          const last = pointFor(weeks[weeks.length - 1], weeks.length - 1);
+          return (
+            <div
+              className="absolute -translate-x-1/2 -translate-y-1/2 grid place-items-center pointer-events-none"
+              style={{ left: `${last.x}%`, top: `${last.y}%` }}
+            >
+              <span className="absolute h-6 w-6 rounded-full bg-accent/30 blur-md now-glow" />
+              <span className="relative h-2.5 w-2.5 rounded-full bg-accent ring-2 ring-bg shadow-[0_0_12px_rgba(226,88,34,0.6)]" />
+            </div>
+          );
+        })()}
         <div className="absolute right-2 text-[10px] uppercase tracking-[0.14em] text-ink-3" style={{ top: `${targetY}%`, transform: "translateY(-50%)" }}>
           ₹130 Cr target
+        </div>
+        <div className="absolute bottom-1 right-2 text-[10px] uppercase tracking-[0.14em] text-accent inline-flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent live-dot" />
+          Now
         </div>
       </div>
 
