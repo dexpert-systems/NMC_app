@@ -66,35 +66,19 @@ export default function ErpSignInPage() {
   };
 
   return (
-    <div className="dark min-h-svh bg-bg text-ink relative overflow-x-hidden">
-      {/* Ambient grid + glow */}
-      <div
-        aria-hidden
-        className="fixed inset-0 pointer-events-none opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      <div
-        aria-hidden
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(70% 50% at 50% 0%, rgba(226,88,34,0.10), transparent 70%)",
-        }}
-      />
+    <div className="erp-canvas erp-noise min-h-svh text-ink relative overflow-x-hidden">
+      <div aria-hidden className="erp-grid" />
+      <div aria-hidden className="erp-vignette" />
 
-      <header className="relative z-10 flex items-center justify-between px-6 lg:px-12 pt-6 pb-2">
-        <Link href="/" className="flex items-center gap-2.5 focus-ring rounded-md">
-          <span className="grid place-items-center h-9 w-9 rounded-md bg-ink text-bg shadow-soft">
+      <header className="relative z-10 flex items-center justify-between gap-4 px-5 lg:px-12 pt-6 pb-2">
+        <Link href="/" className="flex items-center gap-2.5 focus-ring rounded-md min-w-0">
+          <span className="grid place-items-center h-9 w-9 rounded-md bg-ink text-bg shadow-soft shrink-0">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M12 3 L20 8 L20 16 L12 21 L4 16 L4 8 Z" stroke="#E25822" strokeWidth="1.6" strokeLinejoin="round" />
               <circle cx="12" cy="12" r="2" fill="#E25822" />
             </svg>
           </span>
-          <span className="flex flex-col text-left leading-[1.1]">
+          <span className="hidden sm:flex flex-col text-left leading-[1.1] min-w-0">
             <span className="text-[12px] font-medium text-ink tracking-tight whitespace-nowrap">
               Nagpur Municipal Corporation
             </span>
@@ -105,9 +89,9 @@ export default function ErpSignInPage() {
         </Link>
         <Link
           href="/"
-          className="text-[12px] uppercase tracking-[0.14em] text-ink-3 hover:text-ink transition-colors focus-ring rounded"
+          className="text-[12px] uppercase tracking-[0.14em] text-ink-3 hover:text-ink transition-colors focus-ring rounded shrink-0 whitespace-nowrap"
         >
-          Citizen view →
+          <span className="hidden sm:inline">Citizen view </span>→
         </Link>
       </header>
 
@@ -156,7 +140,7 @@ export default function ErpSignInPage() {
                   ease: [0.16, 1, 0.3, 1],
                   delay: i * 0.06,
                 }}
-                className="group relative overflow-hidden text-left rounded-[18px] border border-line bg-surface/30 hover:bg-surface/60 hover:border-ink/15 p-6 transition-all focus-ring"
+                className="group relative overflow-hidden text-left rounded-[18px] border border-line bg-surface/70 hover:bg-surface hover:border-ink/15 p-6 transition-all focus-ring"
               >
                 {/* Hue glow */}
                 <div
@@ -185,7 +169,7 @@ export default function ErpSignInPage() {
                     {card.capabilities.map((c) => (
                       <span
                         key={c}
-                        className="rounded bg-bg/60 border border-line px-2 py-0.5 text-[10px] text-ink-3"
+                        className="rounded bg-bg-2 border border-line px-2 py-0.5 text-[10px] text-ink-3"
                       >
                         {c}
                       </span>

@@ -74,7 +74,7 @@ function Hero() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/40 p-6 sm:p-8"
+      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/70 p-6 sm:p-8"
     >
       <div
         aria-hidden
@@ -115,7 +115,7 @@ function Hero() {
           { k: "Auto-resolved today", v: <LiveCounter base={138} maxStep={2} intervalMs={3500} />, tone: "sage" },
           { k: "Sentiment", v: <span>+2.4</span>, tone: "sage" },
         ].map((s, idx) => (
-          <div key={idx} className="rounded-md border border-line bg-bg/40 px-4 py-3">
+          <div key={idx} className="rounded-md border border-line bg-bg-2/70 px-4 py-3">
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">{s.k}</div>
             <div className={"mt-1.5 font-display tabular text-2xl leading-none " + (s.tone === "danger" ? "text-danger" : s.tone === "amber" ? "text-amber" : "text-sage")}>
               {s.v}
@@ -135,7 +135,7 @@ function Heatmap() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5 sm:p-6"
+      className="rounded-[14px] border border-line bg-surface/70 p-5 sm:p-6"
     >
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -164,7 +164,7 @@ function Heatmap() {
               className="grid grid-cols-[120px_1fr_60px] items-center gap-3"
             >
               <span className="text-[12px] text-ink-2 truncate">{h.ward}</span>
-              <div className="flex h-2 w-full overflow-hidden rounded-full bg-bg/60" style={{ width: `${pct}%`, minWidth: "10%" }}>
+              <div className="flex h-2 w-full overflow-hidden rounded-full bg-bg-2" style={{ width: `${pct}%`, minWidth: "10%" }}>
                 <span style={{ flexGrow: h.garbage }} className="bg-danger" />
                 <span style={{ flexGrow: h.drainage }} className="bg-amber" />
                 <span style={{ flexGrow: h.water }} className="bg-heritage" />
@@ -199,7 +199,7 @@ function CategoryTrend() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55, delay: 0.1 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5 sm:p-6"
+      className="rounded-[14px] border border-line bg-surface/70 p-5 sm:p-6"
     >
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -275,7 +275,7 @@ function EscalationList() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
             className={
-              "rounded-[14px] border bg-surface/30 hover:bg-surface/50 transition-colors p-5 " +
+              "rounded-[14px] border bg-surface/70 hover:bg-surface/90 transition-colors p-5 " +
               (e.severity === "critical"
                 ? "border-danger/40 risk-pulse"
                 : "border-line")
@@ -318,7 +318,7 @@ function EscalationList() {
                   Approve action
                   <Icon name="arrow" size={11} />
                 </button>
-                <button className="inline-flex items-center justify-center gap-2 rounded-md bg-bg/40 hover:bg-bg/60 border border-line px-4 py-2.5 text-[12px] text-ink-2 hover:text-ink focus-ring">
+                <button className="inline-flex items-center justify-center gap-2 rounded-md bg-bg-2/70 hover:bg-bg-2 border border-line px-4 py-2.5 text-[12px] text-ink-2 hover:text-ink focus-ring">
                   Open file
                 </button>
               </div>

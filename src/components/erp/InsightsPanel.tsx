@@ -126,7 +126,7 @@ export function InsightsPanel({ role }: { role: Role }) {
   const profile = ROLES[role];
 
   return (
-    <div className="border-l border-line bg-bg/40 backdrop-blur-xl px-5 py-5 h-full">
+    <div className="border-l border-line bg-bg-2/70 backdrop-blur-xl px-5 py-5 h-full">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">
           <span className="grid place-items-center h-7 w-7 rounded-md bg-accent/15 text-accent">
@@ -154,7 +154,7 @@ export function InsightsPanel({ role }: { role: Role }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: i * 0.06 }}
-            className="rounded-md border border-line bg-surface/40 p-3.5"
+            className="rounded-md border border-line bg-surface/70 p-3.5"
           >
             <div className="flex items-center gap-2 mb-1.5">
               <TypeBadge type={it.type} />
@@ -179,7 +179,7 @@ export function InsightsPanel({ role }: { role: Role }) {
         ))}
       </div>
 
-      <div className="mt-5 rounded-md border border-dashed border-line bg-surface/20 p-3.5">
+      <div className="mt-5 rounded-md border border-dashed border-line bg-surface/50 p-3.5">
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-ink-3">
           <Icon name="spark" size={10} />
           Ask follow-up

@@ -27,7 +27,7 @@ function RevenueHero() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/40 p-6 sm:p-8"
+      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/70 p-6 sm:p-8"
     >
       <div
         aria-hidden
@@ -69,7 +69,7 @@ function RevenueHero() {
           { k: "Reminders out", v: "4,128", trend: "AI auto", tone: "accent" },
           { k: "Recon gap", v: "₹84,200", trend: "4 entries", tone: "amber" },
         ].map((s) => (
-          <div key={s.k} className="rounded-md border border-line bg-bg/40 px-4 py-3">
+          <div key={s.k} className="rounded-md border border-line bg-bg-2/70 px-4 py-3">
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">{s.k}</div>
             <div className="mt-1.5 flex items-baseline gap-1.5">
               <span className="font-display tabular text-3xl text-ink leading-none">
@@ -114,7 +114,7 @@ function DefaulterIntelligence() {
         </button>
       </div>
 
-      <div className="rounded-[14px] border border-line bg-surface/20 overflow-hidden">
+      <div className="rounded-[14px] border border-line bg-surface/50 overflow-hidden">
         <div className="hidden md:grid grid-cols-[1.5fr_1fr_140px_120px_120px] gap-4 px-5 py-3 border-b border-line/60 text-[10px] uppercase tracking-[0.14em] text-ink-3">
           <span>Account</span>
           <span>Why high risk</span>
@@ -130,7 +130,7 @@ function DefaulterIntelligence() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.04 }}
             className={
-              "grid grid-cols-1 md:grid-cols-[1.5fr_1fr_140px_120px_120px] gap-4 px-5 py-4 hover:bg-bg/40 transition-colors group cursor-pointer " +
+              "grid grid-cols-1 md:grid-cols-[1.5fr_1fr_140px_120px_120px] gap-4 px-5 py-4 hover:bg-bg-2/70 transition-colors group cursor-pointer " +
               (i < DEFAULTERS.length - 1 ? "border-b border-line/40" : "")
             }
           >
@@ -199,7 +199,7 @@ function CollectionForecast() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5 sm:p-6"
+      className="rounded-[14px] border border-line bg-surface/70 p-5 sm:p-6"
     >
       <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
         <div>
@@ -267,7 +267,7 @@ function CollectionForecast() {
               "rounded-md border px-3 py-2.5 text-left transition-colors focus-ring " +
               (l.on
                 ? "border-accent/40 bg-accent/10"
-                : "border-line bg-bg/30 hover:bg-bg/50")
+                : "border-line bg-bg-2/60 hover:bg-bg-2")
             }
           >
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">
@@ -296,7 +296,7 @@ function ReconciliationStream() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55, delay: 0.1 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5 sm:p-6"
+      className="rounded-[14px] border border-line bg-surface/70 p-5 sm:p-6"
     >
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -313,7 +313,7 @@ function ReconciliationStream() {
 
       <div className="space-y-2">
         {RECON.map((r, i) => (
-          <div key={i} className="flex items-center gap-3 rounded-md bg-bg/30 px-3.5 py-2.5">
+          <div key={i} className="flex items-center gap-3 rounded-md bg-bg-2/60 px-3.5 py-2.5">
             <span className="h-1.5 w-1.5 rounded-full bg-amber shrink-0" />
             <div className="flex-1 min-w-0">
               <div className="text-[12px] text-ink truncate tabular">{r.batch}</div>
@@ -326,7 +326,7 @@ function ReconciliationStream() {
         ))}
       </div>
 
-      <button className="mt-4 w-full rounded-md border border-line bg-bg/30 hover:bg-bg/50 px-4 py-2.5 text-[12px] text-ink-2 hover:text-ink transition-colors focus-ring">
+      <button className="mt-4 w-full rounded-md border border-line bg-bg-2/60 hover:bg-bg-2 px-4 py-2.5 text-[12px] text-ink-2 hover:text-ink transition-colors focus-ring">
         Run auto-recon now
       </button>
     </motion.div>
@@ -341,7 +341,7 @@ function CampaignOrchestrator() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55 }}
-      className="mt-8 rounded-[18px] border border-line bg-surface/30 p-6 sm:p-8"
+      className="mt-8 rounded-[18px] border border-line bg-surface/70 p-6 sm:p-8"
     >
       <div className="flex items-center gap-2.5 text-[10px] uppercase tracking-[0.22em] text-ink-3 mb-3">
         <Icon name="spark" size={10} />
@@ -362,7 +362,7 @@ function CampaignOrchestrator() {
           { ch: "SMS", count: "800", rate: "Read 62%", tone: "accent" },
           { ch: "Voice (regional)", count: "188", rate: "Avg pickup 34%", tone: "amber" },
         ].map((c) => (
-          <div key={c.ch} className="rounded-md border border-line bg-bg/40 px-4 py-3.5">
+          <div key={c.ch} className="rounded-md border border-line bg-bg-2/70 px-4 py-3.5">
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">
               {c.ch}
             </div>

@@ -92,7 +92,7 @@ function Hero() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/40 p-6 sm:p-8"
+      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/70 p-6 sm:p-8"
     >
       <div
         aria-hidden
@@ -132,7 +132,7 @@ function Hero() {
           { k: "Ready (low risk)", v: "42", tone: "sage" },
           { k: "Avg. clearance", v: "1.4 d", tone: "accent" },
         ].map((s) => (
-          <div key={s.k} className="rounded-md border border-line bg-bg/40 px-4 py-3">
+          <div key={s.k} className="rounded-md border border-line bg-bg-2/70 px-4 py-3">
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">{s.k}</div>
             <div className={"mt-1.5 font-display tabular text-2xl leading-none " + (s.tone === "danger" ? "text-danger" : s.tone === "sage" ? "text-sage" : "text-ink")}>
               {s.v}
@@ -149,7 +149,7 @@ function ApprovalQueue() {
 
   return (
     <div className="mt-8 grid grid-cols-1 xl:grid-cols-[1fr_1fr] gap-4">
-      <div className="rounded-[14px] border border-line bg-surface/20 overflow-hidden">
+      <div className="rounded-[14px] border border-line bg-surface/50 overflow-hidden">
         <div className="px-5 py-4 border-b border-line/60 flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-ink-3">
@@ -160,7 +160,7 @@ function ApprovalQueue() {
               Approval queue
             </h3>
           </div>
-          <select className="text-[11px] uppercase tracking-[0.14em] text-ink-2 bg-bg/60 border border-line rounded-md px-3 py-1.5 focus-ring">
+          <select className="text-[11px] uppercase tracking-[0.14em] text-ink-2 bg-bg-2 border border-line rounded-md px-3 py-1.5 focus-ring">
             <option>By risk · high to low</option>
             <option>Oldest first</option>
             <option>By fee</option>
@@ -177,7 +177,7 @@ function ApprovalQueue() {
                 onClick={() => setOpen(a.id)}
                 className={
                   "w-full text-left px-5 py-4 transition-colors " +
-                  (active ? "bg-bg/50" : "hover:bg-bg/30") +
+                  (active ? "bg-bg/50" : "hover:bg-bg-2/60") +
                   (i < APPS.length - 1 ? " border-b border-line/40" : "")
                 }
               >
@@ -218,7 +218,7 @@ function ApprovalQueue() {
       </div>
 
       {/* Detail */}
-      <div className="rounded-[14px] border border-line bg-surface/20 overflow-hidden">
+      <div className="rounded-[14px] border border-line bg-surface/50 overflow-hidden">
         <AnimatePresence mode="wait">
           {open && (
             <motion.div
@@ -277,7 +277,7 @@ function Detail({ app }: { app: App }) {
 
       <div className="px-5 py-5 space-y-5">
         {/* AI summary */}
-        <div className="rounded-md border border-line bg-bg/40 p-4">
+        <div className="rounded-md border border-line bg-bg-2/70 p-4">
           <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-ink-3 mb-2">
             <Icon name="spark" size={10} />
             AI assessment · model v3.2
@@ -300,7 +300,7 @@ function Detail({ app }: { app: App }) {
               ["Lease agreement", app.flags.includes("Address mismatch") ? "Address mismatch · review" : "Verified · 14 mo remaining", app.flags.includes("Address mismatch") ? "danger" : "sage"],
               ["Premises photo", app.flags.length > 1 ? "Doesn't match lease · review" : "Auto-verified", app.flags.length > 1 ? "danger" : "sage"],
             ].map(([label, status, tone]) => (
-              <div key={label as string} className="flex items-center justify-between rounded-md bg-bg/30 px-3.5 py-2.5">
+              <div key={label as string} className="flex items-center justify-between rounded-md bg-bg-2/60 px-3.5 py-2.5">
                 <span className="text-[12px] text-ink">{label as string}</span>
                 <span className={"text-[11px] " + (tone === "danger" ? "text-danger" : "text-sage")}>{status as string}</span>
               </div>
@@ -329,10 +329,10 @@ function Detail({ app }: { app: App }) {
           <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-md bg-sage text-white px-4 py-2.5 text-[13px] font-medium hover:scale-[1.01] focus-ring">
             <Icon name="check" size={12} /> Approve
           </button>
-          <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-md bg-bg/40 hover:bg-bg/60 border border-line px-4 py-2.5 text-[13px] font-medium text-ink-2 hover:text-ink focus-ring">
+          <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-md bg-bg-2/70 hover:bg-bg-2 border border-line px-4 py-2.5 text-[13px] font-medium text-ink-2 hover:text-ink focus-ring">
             Send to inspection
           </button>
-          <button className="rounded-md border border-line bg-bg/40 hover:bg-bg/60 px-3 py-2.5 text-[13px] text-ink-3 hover:text-ink focus-ring">
+          <button className="rounded-md border border-line bg-bg-2/70 hover:bg-bg-2 px-3 py-2.5 text-[13px] text-ink-3 hover:text-ink focus-ring">
             Reject
           </button>
         </div>

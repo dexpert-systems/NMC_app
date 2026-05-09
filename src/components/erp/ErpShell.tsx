@@ -45,7 +45,7 @@ export function ErpShell({ children, expectedRole }: Props) {
 
   if (!role) {
     return (
-      <div className="dark erp-canvas min-h-svh flex items-center justify-center text-ink-3">
+      <div className="erp-canvas min-h-svh flex items-center justify-center text-ink-3">
         <ErpAurora />
         <div className="relative flex flex-col items-center gap-3 z-10">
           <span className="h-8 w-8 rounded-full border-2 border-accent/20 border-t-accent animate-spin" />
@@ -58,7 +58,7 @@ export function ErpShell({ children, expectedRole }: Props) {
   }
 
   return (
-    <div className="dark erp-canvas erp-noise min-h-svh text-ink overflow-x-hidden relative">
+    <div className="erp-canvas erp-noise min-h-svh text-ink overflow-x-hidden relative">
       {/* Ambient layers */}
       <ErpAurora />
       <div aria-hidden className="erp-grid" />

@@ -47,7 +47,7 @@ function Hero() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/40 p-6 sm:p-8"
+      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/70 p-6 sm:p-8"
     >
       <div
         aria-hidden
@@ -87,7 +87,7 @@ function Hero() {
           { k: "Photo evidence", v: "96%", trend: "first-pass" },
           { k: "Closed this week", v: "47", trend: "+8" },
         ].map((s) => (
-          <div key={s.k} className="rounded-md border border-line bg-bg/40 px-4 py-3">
+          <div key={s.k} className="rounded-md border border-line bg-bg-2/70 px-4 py-3">
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-3">{s.k}</div>
             <div className="mt-1.5 font-display tabular text-2xl text-ink leading-none">{s.v}</div>
             <div className="mt-1.5 text-[11px] text-sage tabular">{s.trend}</div>
@@ -105,7 +105,7 @@ function RouteMap() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55 }}
-      className="rounded-[14px] border border-line bg-surface/20 overflow-hidden"
+      className="rounded-[14px] border border-line bg-surface/50 overflow-hidden"
     >
       <div className="px-5 py-4 border-b border-line/60 flex items-center justify-between">
         <div>
@@ -219,7 +219,7 @@ function Queue() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55, delay: 0.1 }}
-      className="rounded-[14px] border border-line bg-surface/20 overflow-hidden flex flex-col h-fit"
+      className="rounded-[14px] border border-line bg-surface/50 overflow-hidden flex flex-col h-fit"
     >
       <div className="px-5 py-4 border-b border-line/60">
         <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-ink-3">
@@ -235,7 +235,7 @@ function Queue() {
           <div
             key={p.id}
             className={
-              "flex items-center gap-3 px-4 py-3 hover:bg-bg/40 transition-colors cursor-pointer " +
+              "flex items-center gap-3 px-4 py-3 hover:bg-bg-2/70 transition-colors cursor-pointer " +
               (i < INSPECTIONS.length - 1 ? "border-b border-line/40" : "")
             }
           >
@@ -280,7 +280,7 @@ function Queue() {
 
 function SLAStrip() {
   return (
-    <div className="mt-8 rounded-[14px] border border-line bg-surface/20 p-5 sm:p-6">
+    <div className="mt-8 rounded-[14px] border border-line bg-surface/50 p-5 sm:p-6">
       <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-ink-3 mb-4">
         <span className="h-1.5 w-1.5 rounded-full bg-danger live-dot" />
         SLA · breach radar

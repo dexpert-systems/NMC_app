@@ -53,7 +53,7 @@ function CockpitHero() {
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/40 p-6 sm:p-8"
+      className="relative overflow-hidden rounded-[18px] border border-line bg-surface/70 p-6 sm:p-8"
     >
       <div
         aria-hidden
@@ -116,7 +116,7 @@ function SubKPI({
   pulse?: boolean;
 }) {
   return (
-    <div className="rounded-md border border-line bg-bg/40 px-4 py-3 relative overflow-hidden">
+    <div className="rounded-md border border-line bg-bg-2/70 px-4 py-3 relative overflow-hidden">
       {pulse && (
         <span
           aria-hidden
@@ -205,10 +205,10 @@ function ActionStack() {
               ease: [0.16, 1, 0.3, 1],
               delay: i * 0.06,
             }}
-            className="group rounded-[14px] border border-line bg-surface/30 hover:bg-surface/60 hover:border-ink/15 px-5 py-4 transition-all"
+            className="group rounded-[14px] border border-line bg-surface/70 hover:bg-surface hover:border-ink/15 px-5 py-4 transition-all"
           >
             <div className="flex items-center gap-4">
-              <div className="grid place-items-center h-10 w-10 rounded-md bg-bg/60 text-[13px] font-semibold tabular text-ink-2 shrink-0">
+              <div className="grid place-items-center h-10 w-10 rounded-md bg-bg-2 text-[13px] font-semibold tabular text-ink-2 shrink-0">
                 #{a.priority}
               </div>
               <div className="flex-1 min-w-0">
@@ -316,13 +316,13 @@ function KPI({
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5"
+      className="rounded-[14px] border border-line bg-surface/70 p-5"
     >
       <div className="text-[10px] uppercase tracking-[0.16em] text-ink-3">
         {label}
       </div>
       <div className="mt-3">{children}</div>
-      <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-bg/60">
+      <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-bg-2">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
@@ -389,7 +389,7 @@ function RiskHeatmap() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5 sm:p-6"
+      className="rounded-[14px] border border-line bg-surface/70 p-5 sm:p-6"
     >
       <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
         <div>
@@ -422,7 +422,7 @@ function RiskHeatmap() {
                 ? "border-danger/40 bg-danger/10 risk-pulse"
                 : w.risk === "med"
                 ? "border-amber/30 bg-amber/8"
-                : "border-line bg-bg/40 hover:bg-bg/60")
+                : "border-line bg-bg-2/70 hover:bg-bg-2")
             }
           >
             <div className="text-[11px] font-medium text-ink truncate">
@@ -512,7 +512,7 @@ function EscalationStream() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55, delay: 0.1 }}
-      className="rounded-[14px] border border-line bg-surface/30 p-5 sm:p-6"
+      className="rounded-[14px] border border-line bg-surface/70 p-5 sm:p-6"
     >
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -537,7 +537,7 @@ function EscalationStream() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.05 * i }}
-            className="rounded-md border border-line bg-bg/30 hover:bg-bg/50 transition-colors p-3.5"
+            className="rounded-md border border-line bg-bg-2/60 hover:bg-bg-2 transition-colors p-3.5"
           >
             <div className="flex items-center gap-2">
               <span
@@ -598,12 +598,12 @@ function WorkflowTimeline() {
         </span>
       </div>
 
-      <div className="rounded-[14px] border border-line bg-surface/20 overflow-hidden">
+      <div className="rounded-[14px] border border-line bg-surface/50 overflow-hidden">
         {events.map((e, i) => (
           <div
             key={i}
             className={
-              "flex items-center gap-4 px-5 py-3 hover:bg-bg/40 transition-colors " +
+              "flex items-center gap-4 px-5 py-3 hover:bg-bg-2/70 transition-colors " +
               (i < events.length - 1 ? "border-b border-line/40" : "")
             }
           >

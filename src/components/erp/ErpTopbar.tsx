@@ -30,8 +30,8 @@ export function ErpTopbar({ role, onCommandOpen, insightsOpen, onInsightsToggle 
   }, []);
 
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-xl bg-bg/70 border-b border-line">
-      <div className="flex items-center gap-3 px-5 lg:px-6 py-3">
+    <header className="sticky top-0 z-30 backdrop-blur-xl bg-bg/80 border-b border-line">
+      <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 lg:px-6 py-3">
         {/* Workspace pill (mobile shows logo) */}
         <div className="lg:hidden flex items-center gap-2">
           <span className="grid place-items-center h-8 w-8 rounded-md bg-ink text-bg">
@@ -60,23 +60,23 @@ export function ErpTopbar({ role, onCommandOpen, insightsOpen, onInsightsToggle 
         <button
           type="button"
           onClick={onCommandOpen}
-          className="flex-1 max-w-2xl mx-auto flex items-center gap-3 rounded-md bg-surface/40 hover:bg-surface/60 border border-line hover:border-line/80 px-3.5 py-2 text-[13px] text-ink-3 transition-colors focus-ring"
+          className="flex-1 min-w-0 max-w-2xl mx-auto flex items-center gap-3 rounded-md bg-surface/70 hover:bg-surface border border-line hover:border-line/80 px-3 sm:px-3.5 py-2 text-[13px] text-ink-3 transition-colors focus-ring"
         >
           <Icon name="spark" size={13} />
           <span className="flex-1 text-left text-ink-3 truncate">
             Ask the system, run a query, jump anywhere…
           </span>
-          <kbd className="rounded bg-bg/60 border border-line px-1.5 py-0.5 text-[10px] font-medium tabular text-ink-3">
+          <kbd className="hidden sm:inline rounded bg-bg/60 border border-line px-1.5 py-0.5 text-[10px] font-medium tabular text-ink-3">
             ⌘K
           </kbd>
         </button>
 
         {/* Right cluster */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             type="button"
             onClick={onInsightsToggle}
-            className="hidden xl:inline-flex items-center gap-1.5 rounded-md border border-line bg-surface/40 hover:bg-surface/60 px-2.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-ink-3 hover:text-ink transition-colors focus-ring"
+            className="hidden xl:inline-flex items-center gap-1.5 rounded-md border border-line bg-surface/70 hover:bg-surface px-2.5 py-1.5 text-[11px] uppercase tracking-[0.14em] text-ink-3 hover:text-ink transition-colors focus-ring"
             aria-label="Toggle insights"
           >
             <Icon name="data" size={12} />
@@ -86,22 +86,22 @@ export function ErpTopbar({ role, onCommandOpen, insightsOpen, onInsightsToggle 
 
           <button
             type="button"
-            className="relative grid place-items-center h-9 w-9 rounded-md border border-line bg-surface/40 hover:bg-surface/60 text-ink-2 hover:text-ink transition-colors focus-ring"
+            className="relative grid place-items-center h-9 w-9 rounded-md border border-line bg-surface/70 hover:bg-surface text-ink-2 hover:text-ink transition-colors focus-ring shrink-0"
             aria-label="Notifications"
           >
             <Icon name="alerts" size={14} />
-            <span className="absolute top-1 right-1 h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="absolute top-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-accent" />
           </button>
 
-          <div className="relative group">
+          <div className="relative group shrink-0">
             <button
               type="button"
-              className="flex items-center gap-2 rounded-md border border-line bg-surface/40 hover:bg-surface/60 pl-1 pr-2.5 py-1 transition-colors focus-ring"
+              className="flex items-center gap-2 rounded-md border border-line bg-surface/70 hover:bg-surface pl-1 pr-1 lg:pr-2.5 py-1 transition-colors focus-ring"
             >
-              <span className="grid place-items-center h-7 w-7 rounded bg-accent/15 text-accent text-[10px] font-semibold">
+              <span className="grid place-items-center h-7 w-7 rounded bg-accent/15 text-accent text-[10px] font-semibold shrink-0">
                 {profile.initials}
               </span>
-              <span className="hidden sm:inline text-[12px] text-ink-2 tracking-tight">
+              <span className="hidden lg:inline max-w-[140px] xl:max-w-[200px] text-[12px] text-ink-2 tracking-tight truncate">
                 {profile.shortName}
               </span>
             </button>

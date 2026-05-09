@@ -70,7 +70,7 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
   const shortcuts = SHORTCUTS[role];
 
   return (
-    <aside className="hidden lg:flex flex-col w-[280px] shrink-0 border-r border-line h-svh sticky top-0 overflow-y-auto bg-bg/40 backdrop-blur-xl">
+    <aside className="hidden lg:flex flex-col w-[280px] shrink-0 border-r border-line h-svh sticky top-0 overflow-y-auto bg-bg-2/70 backdrop-blur-xl">
       {/* Workspace header */}
       <div className="px-5 pt-6 pb-5 border-b border-line">
         <div className="flex items-center gap-2.5">
@@ -90,9 +90,9 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
           </div>
         </div>
 
-        <div className="mt-5 rounded-md bg-surface/40 border border-line px-3 py-2.5">
+        <div className="mt-5 rounded-md bg-surface/70 border border-line px-3 py-2.5">
           <div className="flex items-center gap-2.5">
-            <span className="grid place-items-center h-8 w-8 rounded-md bg-accent/15 text-accent text-[11px] font-semibold">
+            <span className="grid place-items-center h-8 w-8 rounded-md bg-accent/15 text-accent text-[11px] font-semibold shrink-0">
               {profile.initials}
             </span>
             <div className="min-w-0 flex-1">
@@ -104,12 +104,12 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
               </div>
             </div>
           </div>
-          <div className="mt-2.5 flex items-center justify-between text-[10px] uppercase tracking-[0.14em] text-ink-3">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-sage live-dot" />
-              Online
-            </span>
-            <span>{profile.dept}</span>
+          <div className="mt-2.5 pt-2.5 border-t border-line/60 space-y-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-3">
+            <div className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-sage live-dot shrink-0" />
+              <span>Online</span>
+            </div>
+            <div className="truncate">{profile.dept}</div>
           </div>
         </div>
       </div>
@@ -125,7 +125,7 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
             <Link
               key={s.label}
               href={s.href}
-              className="block rounded-md px-3 py-2.5 hover:bg-surface/60 transition-colors group"
+              className="block rounded-md px-3 py-2.5 hover:bg-surface transition-colors group"
             >
               <div className="flex items-start gap-2.5">
                 <span
@@ -168,7 +168,7 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
                   "flex items-center gap-3 rounded-md px-3 py-2 transition-colors group " +
                   (active
                     ? "bg-accent/10 text-ink"
-                    : "text-ink-2 hover:bg-surface/40 hover:text-ink")
+                    : "text-ink-2 hover:bg-surface/70 hover:text-ink")
                 }
               >
                 <span
@@ -183,7 +183,7 @@ export function AdaptiveSidebar({ role }: { role: Role }) {
                 </span>
                 <span className="flex-1 text-[13px] truncate">{n.label}</span>
                 {n.badge && (
-                  <span className="text-[10px] tabular text-ink-3 px-1.5 py-0.5 rounded bg-surface/40 shrink-0">
+                  <span className="text-[10px] tabular text-ink-3 px-1.5 py-0.5 rounded bg-surface/70 shrink-0">
                     {n.badge}
                   </span>
                 )}
