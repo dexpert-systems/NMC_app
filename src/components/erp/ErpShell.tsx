@@ -8,6 +8,7 @@ import { InsightsPanel } from "./InsightsPanel";
 import { CommandConsole } from "./CommandConsole";
 import { LiveOpsTicker } from "./LiveOpsTicker";
 import { ErpAurora } from "./ErpAurora";
+import { ErpAssistant } from "./ErpAssistant";
 import { getCurrentRole, type Role } from "@/lib/erp";
 
 type Props = {
@@ -97,6 +98,8 @@ export function ErpShell({ children, expectedRole }: Props) {
         open={paletteOpen}
         onClose={() => setPaletteOpen(false)}
       />
+
+      <ErpAssistant role={role} />
     </div>
   );
 }
